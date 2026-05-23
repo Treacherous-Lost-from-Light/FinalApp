@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:lucaschatbot/screen/ChatbotScreen.dart';
 import 'package:lucaschatbot/screen/homepage.dart';
 
 class SplashScreen extends StatefulWidget{
@@ -38,7 +39,7 @@ class SplashScreen extends StatefulWidget{
         _controller.forward();
     
       _timer = Timer(const Duration(seconds: 3), (){
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()),
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ChatBotScreen()),
           );
       });
     }
