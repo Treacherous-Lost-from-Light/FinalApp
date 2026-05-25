@@ -173,27 +173,35 @@ class _HomePage extends State<HomePage> {
           const SizedBox(height: 20),
            if(mood == "Happy") ...[
              _moodRecommendations(
+              context,
               "You're happy today, I'm proud of you", 
               "Writing helps you to maintain mood and record.",
-              "Begin Writing")
+              "Begin Writing",
+              '/Chatbot')
            ]
            else if(mood == "Normal") ...[
                  _moodRecommendations(
+              context,
               "So a normal day is it?", 
               "Sometimes we forget to notice the small things that truly matters. Writing down a moment or feeling that lingered for a bit than it should have helps you notice those small things.",
-              "Begin Writing")
+              "Begin Writing",
+              '/Chatbot')
            ]
            else if(mood == "Unhappy") ...[
                    _moodRecommendations(
+              context,
               "You semm sad today.", 
               "Writing helps you to maintain mood and record.",
-              "Begin Writing")
+              "Begin Writing",
+              '/Chatbot')
            ]
            else if(mood == "Stressed") ...[
                      _moodRecommendations(
+               context,
               "You seemed overwhelmed today.", 
               "Take a short pause and breathe. Small moment of calm can help reset you mind.",
-              "Begin Exercise")
+              "Begin Exercise",
+              '/Breathing')
            ]
 
           ],
@@ -202,7 +210,7 @@ class _HomePage extends State<HomePage> {
     return const SizedBox.shrink();
   }
 
-  Widget _moodRecommendations(String feeling, String message, String action) {
+  Widget _moodRecommendations(BuildContext context, String feeling, String message, String action, String routename) {
     return Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
@@ -226,14 +234,17 @@ class _HomePage extends State<HomePage> {
 
                  SizedBox(height: 10,),
 
-                  GestureDetector(
-                  onTap: () {},
-                 child: Text(action,
-                  style: TextStyle(
-                  color: Colors.black,
-                   ),
-                 ),
-                  )
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, routename);
+                    },
+                     child: Text(action,
+                     style: TextStyle(
+                      color: Colors.black,
+                     ),
+                     ),
+                    )
+                  
                 ],
             )
      );
