@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen>
     _controller.forward();
 
     _timer = Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, '/Checkin' );
+      Navigator.pushReplacementNamed(context, '/Journal' );
     });
   }
 

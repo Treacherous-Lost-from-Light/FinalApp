@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lucaschatbot/screen/MoodCheckin.dart';
+import '../color_scheme.dart';
 
 class HomePage extends StatefulWidget{
 
@@ -107,7 +108,7 @@ class _HomePage extends State<HomePage> {
           child: Text("Daily health tips",
           style: TextStyle(
             fontSize: 15,
-            color: Colors.white,
+            color: Color(0xFFB5D4F4),
           ),
           ),
         ),
@@ -116,7 +117,7 @@ class _HomePage extends State<HomePage> {
           healthtips,
           style: TextStyle(
              fontSize: 10,
-             color: Colors.white,
+             color: Color(0xFFB5D4F4),
           ),
          )
 
@@ -133,7 +134,7 @@ class _HomePage extends State<HomePage> {
         width: double.infinity,
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-        color: Color(0xFF103A5C), 
+        color: AppColorScheme.elevated, 
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: Color(0xFF103A5C)),
       ),
@@ -156,7 +157,7 @@ class _HomePage extends State<HomePage> {
 
                   Text(message,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color(0xFFB5D4F4),
                    ),
                  ),
 
@@ -164,7 +165,7 @@ class _HomePage extends State<HomePage> {
 
                  Text("Try starting with this: ",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color(0xFFB5D4F4),
                    ),
                  ),
 
@@ -183,7 +184,7 @@ class _HomePage extends State<HomePage> {
 
                     child: Text("Maybe this could help: ",
                      style: TextStyle(
-                       color: Colors.white,
+                       color: Color(0xFFB5D4F4),
                      ),
                     ),
                 ),
@@ -223,10 +224,14 @@ Widget _actionButton(String action, String routename) {
        onPressed: () {
         Navigator.pushNamed(context, routename);
       },
-
-       child: Text(action,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color(0xFF0B1929),
+        foregroundColor: const Color(0xFFB5D4F4),
+        side: BorderSide(color: Color(0xFF1D3A5C)),
+      ),
+      child: Text(action,
        style: TextStyle(
-       color: Colors.black,
+       color: Color(0xFFB5D4F4),
               ),
           ),
       ),
