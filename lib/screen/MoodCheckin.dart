@@ -183,7 +183,7 @@ class _Moodcheckin extends State<Moodcheckin> {
            ]
            else if(currentMood == "Unhappy") ...[
               _mooodswings(context,
-             "You're unhappy", 
+             "You're sad", 
              "Maintain your mood", 
              )    
            ]

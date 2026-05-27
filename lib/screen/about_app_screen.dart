@@ -68,7 +68,16 @@ class AboutAppScreen extends StatelessWidget {
               icon: Icons.info_outline,
               title: 'What is Herzpunkt?',
               description:
-                  'Herzpunkt is a health consultant app designed to help you monitor and improve your overall well-being.',
+                  'Herzpunkt is a daily check in app designed to help you manage your mood and improve your overall well-being.',
+            ),
+
+            const SizedBox(height: 16),
+
+            _buildCard(
+              icon: Icons.chat,
+              title: 'Who is Lucas?',
+              description:
+                  'Lucas is your personal chatbot designed to help your mental care.',
             ),
 
             const SizedBox(height: 16),
@@ -77,8 +86,8 @@ class AboutAppScreen extends StatelessWidget {
               icon: Icons.group_outlined,
               title: 'Our Team',
               description:
-                  'Built with care by a passionate team dedicated to making healthcare accessible and easy to use.',
-            ),
+                  'Built with care by a passionate team dedicated to making mentalcare accessible and easy to use.\nBryan Sese\nJonel Lucas\nJester Rubia\nJenna Palisoc',
+            ),          
 
             const SizedBox(height: 16),
 

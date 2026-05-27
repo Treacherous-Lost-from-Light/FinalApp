@@ -3,6 +3,7 @@ import 'package:lucaschatbot/screen/BreathingScreen.dart';
 import 'package:lucaschatbot/screen/ChatbotScreen.dart';
 import 'package:lucaschatbot/screen/Homepage.dart';
 import 'package:lucaschatbot/screen/MoodCheckin.dart';
+import 'package:lucaschatbot/screen/about_app_screen.dart';
 import 'package:lucaschatbot/screen/journal.dart';
 import 'package:lucaschatbot/screen/splash_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -29,6 +30,8 @@ class MyApp extends StatelessWidget {
       '/Breathing': (context) => const BreathingScreen(),
       '/Checkin': (context) => const Moodcheckin(),
       '/Journal': (context) => const Journal(),
+      '/Aboutus': (context) => const AboutAppScreen(),
+      
     },
 
     debugShowCheckedModeBanner: false,

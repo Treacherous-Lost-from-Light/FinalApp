@@ -145,7 +145,7 @@ class _ChatBotScreen extends State<ChatBotScreen> {
           color: Color(0xFFB5D4F4),
         ),
         title: const Text(
-          'Herzpunkt',
+          'Lucas',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w600,

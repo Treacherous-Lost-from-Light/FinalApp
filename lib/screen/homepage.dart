@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lucaschatbot/screen/MoodCheckin.dart';
 import '../color_scheme.dart';
 
 class HomePage extends StatefulWidget{
@@ -11,7 +10,6 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePage extends State<HomePage> {
- Moodcheckin moodcheckin = Moodcheckin();
  bool maybeButton = false;
  String healthtips = "";
  
@@ -23,10 +21,21 @@ class _HomePage extends State<HomePage> {
     backgroundColor: Color(0xFF060F1A),
     
      body: Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(28),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Container(
+           alignment: Alignment.topLeft,
+           child: Text("Welcome Back",
+                   style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 129, 152, 175)
+                   ),
+                   ),
+         ),
+         SizedBox(height: 5,),
           
          Container(
            alignment: Alignment.topLeft,
@@ -54,7 +63,7 @@ class _HomePage extends State<HomePage> {
            ),
          ),
 
-        SizedBox(height: 40,),
+        SizedBox(height: 30,),
         
         if(mood == "Happy") ...[
           _moodRecommendationCard(
@@ -87,25 +96,19 @@ class _HomePage extends State<HomePage> {
           _moodRecommendationCard(
             context, 
             mood,
-            "You seemed overwhelmed today.?", 
+            "You seemed overwhelmed today.", 
             "Take a short pause and breathe. Small moment of calm can help reset you mind.", 
             "Begin Exercise", 
             '/Breathing')
         ],
-
-        SizedBox(height: 20),
-
+        
+        Spacer(),
         
         GestureDetector(
           onTap: () {
-            setState(() {
-              if(healthtips == "") {
-                healthtips = "tip";
-              }
-              else {healthtips = ""; }
-            });
+            Navigator.pushNamed(context, '/Aboutus');
           },
-          child: Text("Daily health tips",
+          child: Text("About us",
           style: TextStyle(
             fontSize: 15,
             color: Color(0xFFB5D4F4),
@@ -113,14 +116,7 @@ class _HomePage extends State<HomePage> {
           ),
         ),
 
-         Text(
-          healthtips,
-          style: TextStyle(
-             fontSize: 10,
-             color: Color(0xFFB5D4F4),
-          ),
-         )
-
+        
 
         ],
       ),
@@ -130,13 +126,34 @@ class _HomePage extends State<HomePage> {
   }
 
   Widget _moodRecommendationCard(BuildContext context,String mood, String feeling, String message, String action, String routename) {
+   Color moodColor = AppColorScheme.accentRim2;
+   IconData moodIcon = Icons.favorite;
+   if (mood == "Happy") {
+   moodColor = Color.fromARGB(150, 247, 219, 97);
+   moodIcon = Icons.wb_sunny;
+   }
+
+   else if (mood == "Normal") {
+   moodColor = Color(0xFF90A4AE);
+   moodIcon = Icons.cloud;
+   }
+
+   else if (mood == "Unhappy") {
+   moodColor = Color.fromARGB(255, 96, 95, 170);
+   moodIcon = Icons.cloud_queue;
+   }
+
+   else if (mood == "Stressed") {
+   moodColor = Color.fromARGB(255, 90, 76, 116);
+   moodIcon = Icons.nights_stay;
+   }
     return Container(
         width: double.infinity,
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
         color: AppColorScheme.elevated, 
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Color(0xFF103A5C)),
+        border: Border.all(color: moodColor, width: 1.5),
       ),
         
               //TEXT
@@ -153,7 +170,7 @@ class _HomePage extends State<HomePage> {
                    ),
                   ),
                   
-                  SizedBox(height: 30),
+                  SizedBox(height: 20),
 
                   Text(message,
                   style: TextStyle(
@@ -161,7 +178,7 @@ class _HomePage extends State<HomePage> {
                    ),
                  ),
 
-                 SizedBox(height: 30),
+                 SizedBox(height: 20),
 
                  Text("Try starting with this: ",
                   style: TextStyle(
@@ -169,11 +186,11 @@ class _HomePage extends State<HomePage> {
                    ),
                  ),
 
-                  SizedBox(height: 30),
+                  SizedBox(height: 20),
 
-                  _actionButton(action, routename),
+                  _actionButton(action, routename, moodColor),
                 
-                SizedBox(height: 30),
+                SizedBox(height: 20),
 
                   GestureDetector(
                     onTap: () {
@@ -184,7 +201,7 @@ class _HomePage extends State<HomePage> {
 
                     child: Text("Maybe this could help: ",
                      style: TextStyle(
-                       color: Color(0xFFB5D4F4),
+                       color: Colors.white54,
                      ),
                     ),
                 ),
@@ -192,21 +209,21 @@ class _HomePage extends State<HomePage> {
                 if(maybeButton == true) ...[
                   if(action == "Begin Exercise") ...[
                        SizedBox(height: 10),
-                      _actionButton("Try Writing", '/Journal'),
+                      _actionButton("Try Writing", '/Journal', moodColor),
                        SizedBox(height: 10),
-                      _actionButton("Talk with Lucas", '/Chatbot'),
+                      _actionButton("Talk with Lucas", '/Chatbot', moodColor),
                   ]
                   else if(action == "Talk with Lucas") ...[
                       SizedBox(height: 10),
-                      _actionButton("Try Writing", '/Journal'),
+                      _actionButton("Try Writing", '/Journal', moodColor),
                        SizedBox(height: 10),
-                      _actionButton("Try Exercise", '/Breathing'),
+                      _actionButton("Try Exercise", '/Breathing', moodColor),
                   ]
                   else if(action == "Begin Writing") ...[
                       SizedBox(height: 10),
-                      _actionButton("Talk with Lucas", '/Chatbot'),
+                      _actionButton("Talk with Lucas", '/Chatbot', moodColor),
                        SizedBox(height: 10),
-                      _actionButton("Try Exercise", '/Breathing'),
+                      _actionButton("Try Exercise", '/Breathing', moodColor),
                   ]
 
                 ],
@@ -217,7 +234,7 @@ class _HomePage extends State<HomePage> {
      );
   }
 
-Widget _actionButton(String action, String routename) {
+Widget _actionButton(String action, String routename,  Color moodColor,) {
  return Container(
       alignment: Alignment.center,
       child: ElevatedButton(
@@ -225,9 +242,10 @@ Widget _actionButton(String action, String routename) {
         Navigator.pushNamed(context, routename);
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xFF0B1929),
+        minimumSize: Size(double.infinity, 48),
+        backgroundColor: moodColor.withValues(alpha: .15),
         foregroundColor: const Color(0xFFB5D4F4),
-        side: BorderSide(color: Color(0xFF1D3A5C)),
+        side: BorderSide(color: moodColor),
       ),
       child: Text(action,
        style: TextStyle(
